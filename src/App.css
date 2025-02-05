@@ -1,13 +1,21 @@
-/* src/App.css */
+
 .App {
   text-align: center;
   padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  height: 100vh;
 }
 
 h1 {
   color: #333;
 }
 
-.CodeEditor {
-  margin-top: 20px;
+.editor-container {
+  margin-top: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
+  width: 100%;
 }
