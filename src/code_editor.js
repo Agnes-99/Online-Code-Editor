@@ -1,5 +1,4 @@
-
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import MonacoEditor from 'react-monaco-editor';
 import './code_editor.css';
 
@@ -13,15 +12,20 @@ const CodeEditor = () => {
     setCode(newCode);
   };
 
-  const handleFontSizeChange = (e) =>{
+  const handleFontSizeChange = (e) => {
     setFontSize(e.target.value);
-  }
+  };
 
   const handleThemeToggle = () => {
     setTheme((prevTheme) => (prevTheme === 'vs-dark' ? 'vs-light' : 'vs-dark'));
   };
 
-  const iframeDoc = iframe.contentWindow.document;
+  const handleRunCode = () => {
+    // Create an iframe to safely execute the user code
+    const iframe = document.createElement('iframe');
+    document.body.appendChild(iframe);
+
+    const iframeDoc = iframe.contentWindow.document;
     iframeDoc.open();
     iframeDoc.write(`
       <html><body>
@@ -45,7 +49,12 @@ const CodeEditor = () => {
     // Handle the result from iframe
     window.addEventListener('message', (event) => {
       if (event.origin === window.origin) {
-        setOutput(event.data); // Update output with the result from iframe
+        const result = event.data;
+        if (result.startsWith('Error:')) {
+          setOutput(<pre className="error">{result}</pre>); // Display error in red
+        } else {
+          setOutput(<pre className="success">{result}</pre>); // Display success in green
+        }
       }
     });
 
@@ -55,7 +64,6 @@ const CodeEditor = () => {
     }, 5000);
   };
 
-  
   return (
     <div className="code-editor-container">
       <div className="editor-toolbar">
@@ -68,9 +76,10 @@ const CodeEditor = () => {
             max="30"
             value={fontSize}
             onChange={handleFontSizeChange}
-            className="toolbar-btn"
+            className="font-slider"
           />
         </div>
+        <button onClick={handleRunCode} className="toolbar-btn">Run Code</button>
       </div>
 
       <div className="editor-wrapper">
@@ -87,9 +96,9 @@ const CodeEditor = () => {
             lineNumbers: 'on',
             wordWrap: 'on',
             automaticLayout: true,
-            renderLineHighlight: 'none', 
-            minimap: { enabled: false }, 
-            padding: { top: 10, bottom: 10, left: 2, right:2 },
+            renderLineHighlight: 'none',
+            minimap: { enabled: false },
+            padding: { top: 10, bottom: 10, left: 2, right: 2 },
             scrollbar: {
               vertical: 'auto',
               horizontal: 'auto',
@@ -99,10 +108,10 @@ const CodeEditor = () => {
           }}
         />
       </div>
-       {/* Display the output of the code execution */}
-       <div className="output-container">
+
+      <div className="output-container">
         <h3>Output:</h3>
-        <pre>{output}</pre>
+        <div>{output}</div>
       </div>
     </div>
   );
