@@ -7,6 +7,7 @@ const CodeEditor = () => {
   const [code, setCode] = useState('// Start typing your code...');
   const [theme, setTheme] = useState('vs-dark');
   const [fontSize, setFontSize] = useState(14);
+  const [output, setOutput] = useState('');
 
   const handleEditorChange = (newCode) => {
     setCode(newCode);
@@ -19,6 +20,41 @@ const CodeEditor = () => {
   const handleThemeToggle = () => {
     setTheme((prevTheme) => (prevTheme === 'vs-dark' ? 'vs-light' : 'vs-dark'));
   };
+
+  const iframeDoc = iframe.contentWindow.document;
+    iframeDoc.open();
+    iframeDoc.write(`
+      <html><body>
+      <script>
+        try {
+          let output = '';
+          const log = (message) => { output += message + '\\n'; };
+          console.log = log;
+          console.error = log;
+          // Run the user code
+          ${code}
+          window.parent.postMessage(output, '*'); // Send the result back to the parent window
+        } catch (err) {
+          window.parent.postMessage('Error: ' + err.message, '*');
+        }
+      </script>
+      </body></html>
+    `);
+    iframeDoc.close();
+
+    // Handle the result from iframe
+    window.addEventListener('message', (event) => {
+      if (event.origin === window.origin) {
+        setOutput(event.data); // Update output with the result from iframe
+      }
+    });
+
+    // Clean up iframe after execution
+    setTimeout(() => {
+      document.body.removeChild(iframe);
+    }, 5000);
+  };
+
   
   return (
     <div className="code-editor-container">
@@ -62,6 +98,11 @@ const CodeEditor = () => {
             },
           }}
         />
+      </div>
+       {/* Display the output of the code execution */}
+       <div className="output-container">
+        <h3>Output:</h3>
+        <pre>{output}</pre>
       </div>
     </div>
   );
