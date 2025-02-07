@@ -3,7 +3,7 @@
 ---
 UNDER DEVELOPMENT
 
-A simple and fun **online code editor** built with **React** and **Monaco Editor**. Write and run JavaScript code directly in your browser. 🎉 Perfect for learning, experimenting, and testing out your code in real-time.
+A simple and fun **online code editor** built with **React** and **Monaco Editor**. Write and run JavaScript code directly in your browser. 🎉 Perfect for learning, experimenting and testing out your code in real-time.
 
 ---
 
@@ -19,19 +19,19 @@ A simple and fun **online code editor** built with **React** and **Monaco Editor
 
 ## 🔮 Features to Come
 
-- **🔍 Autocompletion**: Add more advanced IntelliSense to suggest functions, variables, and methods as you type.
-- **💾 Save & Load Code**: Allow users to save their code to local storage or a cloud service, and load it later.
-- **📚 Multi-language Support**: Expand the editor to support languages other than JavaScript (e.g., Python, Java, HTML).
+- **🔍 Autocompletion**: Add more advanced IntelliSense to suggest functions, variables and methods as you type.
+- **💾 Save & Load Code**: Allow users to save their code to local storage or a cloud service and load it later.
+- **📚 Multi-language Support**: Expand the editor to support languages other than JavaScript (e.g. Python, Java, HTML).
 - **🎨 Custom Themes**: Let users create their own themes or select from a library of themes.
 - **🖨️ Print Output**: Add a feature to print the output of the code directly to a PDF or printer.
-- **⚡ Live Collaboration**: Allow users to collaborate on code in real-time, like Google Docs for code!
+- **⚡ Live Collaboration**: Allow users to collaborate on code in real-time, like Google Docs for code.
 - **💬 Code Snippets**: Enable a library of common code snippets for users to easily insert into their code.
 
 ---
 
 ## 👀 Demo
 
-Check out the live demo of the editor here: [Demo Link](to be released)
+Check out the live demo of the editor here:(to be released)
 
 ---
 
@@ -45,10 +45,10 @@ Check out the live demo of the editor here: [Demo Link](to be released)
 
 ---
 ## 💡 Technologies Used
-**React**: For building the interactive user interface.
-**Monaco Editor**: The powerful code editor used for writing and editing code.
-**CSS**: For styling the editor and making it look nice.
-**JavaScript**: To handle the logic of running and displaying your code.
+1.**React**: For building the interactive user interface.
+2.**Monaco Editor**: The powerful code editor used for writing and editing code.
+3.**CSS**: For styling the editor and making it look nice.
+4.**JavaScript**: To handle the logic of running and displaying your code.
 
 ---
 ## 🤝 Contributing
