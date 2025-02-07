@@ -1,4 +1,4 @@
-/* General container for the entire editor */
+
 .code-editor-container {
   width: 100%;
   height: 90vh;
@@ -10,7 +10,6 @@
   padding: 10px;
 }
 
-/* Styling the toolbar at the top */
 .editor-toolbar {
   display: flex;
   justify-content: space-between;
@@ -18,7 +17,6 @@
   margin-bottom: 15px;
 }
 
-/* Button styles in the toolbar */
 .toolbar-btn {
   padding: 8px 15px;
   background-color: #4CAF50;
@@ -34,7 +32,6 @@
   background-color: #45a049;
 }
 
-/* Font size selector */
 .font-size-selector {
   display: flex;
   align-items: center;
@@ -45,14 +42,12 @@
   margin-right: 10px;
 }
 
-/* Range slider for font size */
 .font-slider {
   width: 100px;
   cursor: pointer;
   margin-top: 5px;
 }
 
-/* Wrapper for the Monaco editor */
 .editor-wrapper {
   flex-grow: 1;
   position: relative;
@@ -61,7 +56,6 @@
   overflow: hidden;
 }
 
-/* Custom Monaco editor styling */
 .monaco-editor {
   font-family: 'Courier New', Courier, monospace;
   background-color: #1e1e1e !important;
@@ -69,7 +63,6 @@
   padding: 0 !important;
 }
 
-/* Line number and scroll styling */
 .monaco-editor .line-numbers {
   color: #888;
   padding-right: 5px;
@@ -98,7 +91,6 @@
   background-color: #333;
 }
 
-/* Output container styles */
 .output-container {
   background-color: #2d2d2d;
   color: #dcdcdc;
@@ -110,14 +102,12 @@
   overflow-y: auto;
 }
 
-/* Output header */
 .output-container h3 {
   font-size: 18px;
   color: #4CAF50;
   margin-bottom: 10px;
 }
 
-/* Preformatted text for the output */
 .output-container pre {
   font-family: 'Courier New', Courier, monospace;
   font-size: 14px;
@@ -133,14 +123,12 @@
   color: #dcdcdc;
 }
 
-/* Error message styles */
 .output-container pre.error {
   background-color: #b92f2f;
   color: #fff;
   border: 1px solid #a62424;
 }
 
-/* Success message styles */
 .output-container pre.success {
   background-color: #4CAF50;
   color: #fff;

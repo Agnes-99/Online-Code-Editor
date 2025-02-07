@@ -1,70 +1,90 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 🖥️ Online Code Editor
+---
+UNDER DEVELOPMENT
 
-## Available Scripts
+A simple and fun **online code editor** built with **React** and **Monaco Editor**. Write and run JavaScript code directly in your browser. 🎉 Perfect for learning, experimenting, and testing out your code in real-time.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🚀 Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **📝 Monaco Editor**: A powerful, easy-to-use code editor with IntelliSense and syntax highlighting.
+- **🌙 Dark & 🌞 Light Themes**: Switch between dark and light themes with just one click.
+- **🔤 Font Size Control**: Adjust the font size to suit your preferences with a slider.
+- **💻 JavaScript Execution**: Write and run JavaScript code directly in the editor and see the output live.
+- **⚠️ Error Handling**: Errors are caught and displayed to help you fix issues easily.
+- **📜 Console Output**: View logs and results in a neat output area below the editor.
+- **📱 Responsive**: The editor looks great on all screen sizes.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🔮 Features to Come
 
-### `npm test`
+- **🔍 Autocompletion**: Add more advanced IntelliSense to suggest functions, variables, and methods as you type.
+- **💾 Save & Load Code**: Allow users to save their code to local storage or a cloud service, and load it later.
+- **📚 Multi-language Support**: Expand the editor to support languages other than JavaScript (e.g., Python, Java, HTML).
+- **🎨 Custom Themes**: Let users create their own themes or select from a library of themes.
+- **🖨️ Print Output**: Add a feature to print the output of the code directly to a PDF or printer.
+- **⚡ Live Collaboration**: Allow users to collaborate on code in real-time, like Google Docs for code!
+- **💬 Code Snippets**: Enable a library of common code snippets for users to easily insert into their code.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 👀 Demo
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Check out the live demo of the editor here: [Demo Link](to be released)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🛠️ How It Works
 
-### `npm run eject`
+1. **Write Code**: Start typing your JavaScript code in the Monaco editor.
+2. **Toggle Themes**: Click to switch between dark and light themes for better visibility.
+3. **Change Font Size**: Use the slider to make the text larger or smaller.
+4. **Run Code**: Hit the "Run Code" button to execute your JavaScript.
+5. **View Output**: The result of your code will show up in the output panel below the editor.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
+## 💡 Technologies Used
+**React**: For building the interactive user interface.
+**Monaco Editor**: The powerful code editor used for writing and editing code.
+**CSS**: For styling the editor and making it look nice.
+**JavaScript**: To handle the logic of running and displaying your code.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
+## 🤝 Contributing
+I’m always open to suggestions and feedback. If you have ideas to improve the editor:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Fork the repository.
+2. Clone your fork to your local machine.
+3. Create a new branch for your changes.
+4. Make your changes and commit them.
+5. Push your changes to your fork.
+6. Open a pull request and describe what you’ve changed.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
+## 📥 Installation
 
-## Learn More
+To run this project on your computer, follow these simple steps:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 1. Clone the Repository
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+git clone https://github.com/Agnes-99/online-code-editor.git
+cd online-code-editor
 
-### Code Splitting
+install Dependencies
+- Make sure Node.js is  installed on your computer.
+- Install the required libraries: npm install
+- Run the project: npm start
+Now, go to http://localhost:3000 in your browser and you’re ready to go! 🎉
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
+## 📩 Contact Me
+Feel free to connect with me via:
 
-### Analyzing the Bundle Size
+Email: agnesmabusela12@gmail.com
+LinkedIn: Agnes Mabusela
+GitHub: Agnes-99
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+### 🖋️ License
+This project is licensed under the MIT License. Feel free to use, modify, and distribute this project as you see fit.

@@ -21,7 +21,6 @@ const CodeEditor = () => {
   };
 
   const handleRunCode = () => {
-    // Create an iframe to safely execute the user code
     const iframe = document.createElement('iframe');
     document.body.appendChild(iframe);
 
@@ -46,7 +45,6 @@ const CodeEditor = () => {
     `);
     iframeDoc.close();
 
-    // Handle the result from iframe
     window.addEventListener('message', (event) => {
       if (event.origin === window.origin) {
         const result = event.data;
@@ -58,7 +56,6 @@ const CodeEditor = () => {
       }
     });
 
-    // Clean up iframe after execution
     setTimeout(() => {
       document.body.removeChild(iframe);
     }, 5000);
