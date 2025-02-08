@@ -2,15 +2,13 @@ import React, { useState, useEffect } from 'react';
 import MonacoEditor from 'react-monaco-editor';
 import './code_editor.css';
 
-// ResizeObserver wrapper to handle resizing issues
 const ResizeObserverWrapper = ({ children }) => {
   useEffect(() => {
     const observer = new ResizeObserver(() => {
-      // Placeholder logic for ResizeObserver if you want to throttle/debounce
     });
-    observer.observe(document.body); // Observe the body or a specific element
+    observer.observe(document.body); 
 
-    return () => observer.disconnect(); // Cleanup observer on unmount
+    return () => observer.disconnect(); 
   }, []);
 
   return <>{children}</>;
@@ -21,7 +19,7 @@ const CodeEditor = () => {
   const [theme, setTheme] = useState('vs-dark');
   const [fontSize, setFontSize] = useState(14);
   const [output, setOutput] = useState('');
-  const [language, setLanguage] = useState('javascript'); // Track selected language
+  const [language, setLanguage] = useState('javascript'); 
 
   const handleEditorChange = (newCode) => {
     setCode(newCode);
@@ -36,15 +34,15 @@ const CodeEditor = () => {
   };
 
   const handleRunCode = () => {
-    // For Python and Java, use JDoodle API to execute code
+   
     if (language === 'python' || language === 'java') {
-      const apiUrl = 'https://api.jdoodle.com/v1/execute'; // JDoodle API URL
+      const apiUrl = 'https://api.jdoodle.com/v1/execute'; 
       const payload = {
         script: code,
         language: language,
-        versionIndex: '0', // You can change this if needed
-        clientId: 'YOUR_CLIENT_ID', // Replace with your JDoodle Client ID
-        clientSecret: 'YOUR_CLIENT_SECRET', // Replace with your JDoodle Client Secret
+        versionIndex: '0', 
+        clientId: 'YOUR_CLIENT_ID', 
+        clientSecret: 'YOUR_CLIENT_SECRET', 
       };
 
       fetch(apiUrl, {
@@ -55,16 +53,15 @@ const CodeEditor = () => {
         .then((response) => response.json())
         .then((data) => {
           if (data.output) {
-            setOutput(<pre className="success">{data.output}</pre>); // Success output
-          } else if (data.error) {
-            setOutput(<pre className="error">{data.error}</pre>); // Error output
+            setOutput(<pre className="success">{data.output}</pre>); 
+            setOutput(<pre className="error">{data.error}</pre>); 
           }
         })
         .catch((err) => {
           setOutput(<pre className="error">Error: {err.message}</pre>);
         });
     } else {
-      // For JavaScript, run code directly as before
+    
       const iframe = document.createElement('iframe');
       document.body.appendChild(iframe);
 
@@ -80,7 +77,7 @@ const CodeEditor = () => {
             console.error = log;
             // Run the user code
             ${code}
-            window.parent.postMessage(output, '*'); // Send the result back to the parent window
+            window.parent.postMessage(output, '*'); 
           } catch (err) {
             window.parent.postMessage('Error: ' + err.message, '*');
           }
@@ -93,9 +90,9 @@ const CodeEditor = () => {
         if (event.origin === window.origin) {
           const result = event.data;
           if (result.startsWith('Error:')) {
-            setOutput(<pre className="error">{result}</pre>); // Display error in red
+            setOutput(<pre className="error">{result}</pre>); 
           } else {
-            setOutput(<pre className="success">{result}</pre>); // Display success in green
+            setOutput(<pre className="success">{result}</pre>); 
           }
         }
       });
@@ -107,7 +104,7 @@ const CodeEditor = () => {
   };
 
   const handleLanguageChange = (e) => {
-    setLanguage(e.target.value); // Update the language based on selection
+    setLanguage(e.target.value); 
   };
 
   return (
@@ -135,7 +132,7 @@ const CodeEditor = () => {
             <option value="python">Python</option>
             <option value="java">Java</option>
             <option value="cpp">C++</option>
-            {/* Add more languages as needed */}
+            {/* More languages to be added */}
           </select>
         </div>
       </div>
@@ -145,7 +142,7 @@ const CodeEditor = () => {
           <MonacoEditor
             width="100%"
             height="100%"
-            language={language} // Set the language dynamically
+            language={language}
             value={code}
             onChange={handleEditorChange}
             theme={theme}
@@ -156,7 +153,7 @@ const CodeEditor = () => {
               wordWrap: 'on',
               automaticLayout: true,
               renderLineHighlight: 'none',
-              minimap: { enabled: false }, // Make sure minimap is completely off
+              minimap: { enabled: false }, 
               padding: { top: 10, bottom: 10, left: 2, right: 2 },
               scrollbar: {
                 vertical: 'auto',
