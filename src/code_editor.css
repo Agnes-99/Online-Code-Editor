@@ -134,3 +134,45 @@
   color: #fff;
   border: 1px solid #388e3c;
 }
+.language-selector {
+  display: flex;
+  align-items: center;
+  background-color: #333;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.language-selector label {
+  color: white;
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.language-selector select {
+  background-color: #444;
+  color: #dcdcdc;
+  border: 1px solid #555;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.language-selector select:hover {
+  background-color: #555;
+}
+
+.language-selector select:focus {
+  border-color: #4CAF50;
+  outline: none;
+}
+
+.language-selector select option {
+  background-color: #333;
+  color: #dcdcdc;
+}
+
+.language-selector select option:hover {
+  background-color: #555;
+}

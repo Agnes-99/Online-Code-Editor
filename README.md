@@ -45,10 +45,10 @@ Check out the live demo of the editor here:(to be released)
 
 ---
 ## 💡 Technologies Used
-1.**React**: For building the interactive user interface.
-2.**Monaco Editor**: The powerful code editor used for writing and editing code.
-3.**CSS**: For styling the editor and making it look nice.
-4.**JavaScript**: To handle the logic of running and displaying your code.
+- **React**: For building the interactive user interface.
+- **Monaco Editor**: The powerful code editor used for writing and editing code.
+- **CSS**: For styling the editor and making it look nice.
+- **JavaScript**: To handle the logic of running and displaying your code.
 
 ---
 ## 🤝 Contributing
@@ -68,8 +68,8 @@ To run this project on your computer, follow these simple steps:
 
 ### 1. Clone the Repository
 
-git clone https://github.com/Agnes-99/online-code-editor.git
-cd online-code-editor
+- git clone https://github.com/Agnes-99/online-code-editor.git
+- cd online-code-editor
 
 install Dependencies
 - Make sure Node.js is  installed on your computer.
@@ -81,9 +81,9 @@ Now, go to http://localhost:3000 in your browser and you’re ready to go! 🎉
 ## 📩 Contact Me
 Feel free to connect with me via:
 
-Email: agnesmabusela12@gmail.com
-LinkedIn: Agnes Mabusela
-GitHub: Agnes-99
+- Email: agnesmabusela12@gmail.com
+- LinkedIn: Agnes Mabusela
+- GitHub: Agnes-99
 
 ---
 ### 🖋️ License
