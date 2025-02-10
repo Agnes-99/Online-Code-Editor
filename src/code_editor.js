@@ -3,19 +3,28 @@ import MonacoEditor from 'react-monaco-editor';
 import './code_editor.css';
 
 const ResizeObserverWrapper = ({ children }) => {
+
+  const [isResizing, setIsResizing] = useState(false);
   useEffect(() => {
     const observer = new ResizeObserver(() => {
+     
+      if (!isResizing) {
+        setIsResizing(true);
+        requestAnimationFrame(() => {
+          setIsResizing(false);
+        });
+      }
     });
-    observer.observe(document.body); 
+    observer.observe(document.querySelector('.editor-wrapper')); 
 
     return () => observer.disconnect(); 
-  }, []);
+  }, [isResizing]);
 
   return <>{children}</>;
 };
 
 const CodeEditor = () => {
-  const [code, setCode] = useState('// Start typing your code...');
+  const [code, setCode] = useState('Start typing your code...');
   const [theme, setTheme] = useState('vs-dark');
   const [fontSize, setFontSize] = useState(14);
   const [output, setOutput] = useState('');
@@ -33,16 +42,18 @@ const CodeEditor = () => {
     setTheme((prevTheme) => (prevTheme === 'vs-dark' ? 'vs-light' : 'vs-dark'));
   };
 
+  const handleLanguageChange = (e) => {
+    setLanguage(e.target.value); 
+  };
+
   const handleRunCode = () => {
    
     if (language === 'python' || language === 'java') {
-      const apiUrl = 'https://api.jdoodle.com/v1/execute'; 
+      // Send a POST request to your backend
+      const apiUrl = 'http://localhost:5000/run'; 
       const payload = {
-        script: code,
-        language: language,
-        versionIndex: '0', 
-        clientId: 'YOUR_CLIENT_ID', 
-        clientSecret: 'YOUR_CLIENT_SECRET', 
+        code: code, // User's code
+        language: language, 
       };
 
       fetch(apiUrl, {
@@ -53,15 +64,18 @@ const CodeEditor = () => {
         .then((response) => response.json())
         .then((data) => {
           if (data.output) {
-            setOutput(<pre className="success">{data.output}</pre>); 
-            setOutput(<pre className="error">{data.error}</pre>); 
+            setOutput(<pre className="success">{data.output}</pre>);  
           }
+          if (data.console.error) {
+            setOutput(<pre className="error">{data.output}</pre>);  
+          }  
         })
         .catch((err) => {
           setOutput(<pre className="error">Error: {err.message}</pre>);
         });
     } else {
-    
+
+      // JS code execution block (for JavaScript)
       const iframe = document.createElement('iframe');
       document.body.appendChild(iframe);
 
@@ -103,10 +117,6 @@ const CodeEditor = () => {
     }
   };
 
-  const handleLanguageChange = (e) => {
-    setLanguage(e.target.value); 
-  };
-
   return (
     <div className="code-editor-container">
       <div className="editor-toolbar">
@@ -131,8 +141,6 @@ const CodeEditor = () => {
             <option value="javascript">JavaScript</option>
             <option value="python">Python</option>
             <option value="java">Java</option>
-            <option value="cpp">C++</option>
-            {/* More languages to be added */}
           </select>
         </div>
       </div>
