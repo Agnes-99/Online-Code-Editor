@@ -5,31 +5,43 @@
   display: flex;
   flex-direction: column;
   background-color: #282c34;
-  border-radius: 8px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: all 0.3s ease-in-out;
 }
+
 
 .editor-toolbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #444;
+  padding-bottom: 10px;
 }
 
+
 .toolbar-btn {
-  padding: 8px 15px;
+  padding: 10px 18px;
   background-color: #4CAF50;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.2s ease-in-out;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 .toolbar-btn:hover {
   background-color: #45a049;
+  transform: scale(1.05);
+}
+
+.toolbar-btn:active {
+  transform: scale(0.98);
 }
 
 .font-size-selector {
@@ -38,49 +50,55 @@
 }
 
 .font-size-selector label {
-  color: white;
-  margin-right: 10px;
+  color: #ccc;
+  margin-right: 12px;
+  font-size: 14px;
 }
 
 .font-slider {
-  width: 100px;
+  width: 120px;
+  height: 5px;
   cursor: pointer;
+  background-color: #444;
+  border-radius: 5px;
   margin-top: 5px;
 }
 
+/* Wrapper around Monaco editor */
 .editor-wrapper {
   flex-grow: 1;
   position: relative;
-  border-radius: 8px;
+  border-radius: 12px;
   background-color: #1e1e1e;
   overflow: hidden;
+  margin-bottom: 20px;
 }
 
 .monaco-editor {
-  font-family: 'Courier New', Courier, monospace;
   background-color: #1e1e1e !important;
   color: #dcdcdc !important;
   padding: 0 !important;
+  font-size: 14px !important;
 }
 
 .monaco-editor .line-numbers {
   color: #888;
-  padding-right: 5px;
+  padding-right: 8px;
   margin-left: 0px;
 }
 
 .monaco-editor .view-line {
-  padding-left: 2px;
+  padding-left: 4px;
   display: flex;
 }
 
 .monaco-editor ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 .monaco-editor ::-webkit-scrollbar-thumb {
   background-color: #555;
-  border-radius: 10px;
+  border-radius: 12px;
 }
 
 .monaco-editor ::-webkit-scrollbar-thumb:hover {
@@ -91,37 +109,40 @@
   background-color: #333;
 }
 
+
 .output-container {
   background-color: #2d2d2d;
   color: #dcdcdc;
-  padding: 15px;
-  border-radius: 8px;
-  margin-top: 15px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   max-height: 40vh;
   overflow-y: auto;
 }
 
 .output-container h3 {
-  font-size: 18px;
+  font-size: 20px;
   color: #4CAF50;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  font-weight: 600;
 }
+
 
 .output-container pre {
   font-family: 'Courier New', Courier, monospace;
-  font-size: 14px;
+  font-size: 16px;
   white-space: pre-wrap;
   word-wrap: break-word;
   background-color: #1e1e1e;
-  padding: 15px;
-  border-radius: 5px;
+  padding: 20px;
+  border-radius: 8px;
   border: 1px solid #444;
   margin: 0;
-  max-height: 100%;
-  overflow: auto;
   color: #dcdcdc;
+  line-height: 1.5;
 }
+
 
 .output-container pre.error {
   background-color: #b92f2f;
@@ -134,12 +155,14 @@
   color: #fff;
   border: 1px solid #388e3c;
 }
+
+
 .language-selector {
   display: flex;
   align-items: center;
   background-color: #333;
-  padding: 5px;
-  border-radius: 5px;
+  padding: 6px 10px;
+  border-radius: 8px;
 }
 
 .language-selector label {
@@ -152,11 +175,11 @@
   background-color: #444;
   color: #dcdcdc;
   border: 1px solid #555;
-  border-radius: 5px;
-  padding: 5px 10px;
+  border-radius: 6px;
+  padding: 8px 15px;
   font-size: 14px;
   cursor: pointer;
-  transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .language-selector select:hover {

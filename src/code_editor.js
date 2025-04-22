@@ -1,59 +1,71 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import MonacoEditor from 'react-monaco-editor';
+import debounce from 'lodash.debounce';
 import './code_editor.css';
 
-const ResizeObserverWrapper = ({ children }) => {
+// ResizeObserverWrapper: Handles dynamic resizing of the Monaco Editor
+const ResizeObserverWrapper = ({ children, editorInstance }) => {
+  const editorWrapperRef = useRef(null);
 
-  const [isResizing, setIsResizing] = useState(false);
   useEffect(() => {
-    const observer = new ResizeObserver(() => {
-     
-      if (!isResizing) {
-        setIsResizing(true);
-        requestAnimationFrame(() => {
-          setIsResizing(false);
-        });
+    const handleResize = debounce(() => {
+      if (editorInstance) {
+        editorInstance.layout(); // Ensure Monaco Editor layout is updated
       }
-    });
-    observer.observe(document.querySelector('.editor-wrapper')); 
+    }, 100); // Debounce to optimize resize handling
 
-    return () => observer.disconnect(); 
-  }, [isResizing]);
+    const observer = new ResizeObserver(handleResize);
 
-  return <>{children}</>;
+    // Observe the editor wrapper element for size changes
+    if (editorWrapperRef.current) {
+      observer.observe(editorWrapperRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+      handleResize.cancel();
+    };
+  }, [editorInstance]);
+
+  return <div ref={editorWrapperRef}>{children}</div>;
 };
 
+// CodeEditor: Main component for the code editor
 const CodeEditor = () => {
-  const [code, setCode] = useState('Start typing your code...');
+  const [code, setCode] = useState('// Start typing your code...');
   const [theme, setTheme] = useState('vs-dark');
   const [fontSize, setFontSize] = useState(14);
   const [output, setOutput] = useState('');
-  const [language, setLanguage] = useState('javascript'); 
+  const [language, setLanguage] = useState('javascript');
+  const [editorInstance, setEditorInstance] = useState(null); // Store editor instance
 
+  // Code changes
   const handleEditorChange = (newCode) => {
     setCode(newCode);
   };
 
+  // Font size selection
   const handleFontSizeChange = (e) => {
-    setFontSize(e.target.value);
+    setFontSize(Number(e.target.value));
   };
 
+  // Themes changes
   const handleThemeToggle = () => {
     setTheme((prevTheme) => (prevTheme === 'vs-dark' ? 'vs-light' : 'vs-dark'));
   };
 
+  // Languages selection
   const handleLanguageChange = (e) => {
-    setLanguage(e.target.value); 
+    setLanguage(e.target.value);
   };
 
+  // Execute the code and display output
   const handleRunCode = () => {
-   
     if (language === 'python' || language === 'java') {
-      // Send a POST request to your backend
-      const apiUrl = 'http://localhost:5000/run'; 
+      const apiUrl = 'http://localhost:5000/run';
       const payload = {
-        code: code, // User's code
-        language: language, 
+        code: code,
+        language: language,
       };
 
       fetch(apiUrl, {
@@ -64,18 +76,16 @@ const CodeEditor = () => {
         .then((response) => response.json())
         .then((data) => {
           if (data.output) {
-            setOutput(<pre className="success">{data.output}</pre>);  
+            setOutput(<pre className="success">{data.output}</pre>);
           }
-          if (data.console.error) {
-            setOutput(<pre className="error">{data.output}</pre>);  
-          }  
+          if (data.console && data.console.error) {
+            setOutput(<pre className="error">{data.console.error}</pre>);
+          }
         })
         .catch((err) => {
           setOutput(<pre className="error">Error: {err.message}</pre>);
         });
     } else {
-
-      // JS code execution block (for JavaScript)
       const iframe = document.createElement('iframe');
       document.body.appendChild(iframe);
 
@@ -89,9 +99,8 @@ const CodeEditor = () => {
             const log = (message) => { output += message + '\\n'; };
             console.log = log;
             console.error = log;
-            // Run the user code
             ${code}
-            window.parent.postMessage(output, '*'); 
+            window.parent.postMessage(output, '*');
           } catch (err) {
             window.parent.postMessage('Error: ' + err.message, '*');
           }
@@ -104,9 +113,9 @@ const CodeEditor = () => {
         if (event.origin === window.origin) {
           const result = event.data;
           if (result.startsWith('Error:')) {
-            setOutput(<pre className="error">{result}</pre>); 
+            setOutput(<pre className="error">{result}</pre>);
           } else {
-            setOutput(<pre className="success">{result}</pre>); 
+            setOutput(<pre className="success">{result}</pre>);
           }
         }
       });
@@ -117,10 +126,18 @@ const CodeEditor = () => {
     }
   };
 
+  // Editor mounted callback to store Monaco editor instance
+  const editorDidMount = (editor, monaco) => {
+    setEditorInstance(editor); // Store the Monaco editor instance
+  };
+
   return (
     <div className="code-editor-container">
+      {/* Editor Toolbar */}
       <div className="editor-toolbar">
-        <button onClick={handleThemeToggle} className="toolbar-btn">Toggle Theme</button>
+        <button onClick={handleThemeToggle} className="toolbar-btn">
+          {theme === 'vs-dark' ? 'Light Theme' : 'Dark Theme'}
+        </button>
         <div className="font-size-selector">
           <label>Font Size:</label>
           <input
@@ -131,10 +148,8 @@ const CodeEditor = () => {
             onChange={handleFontSizeChange}
             className="font-slider"
           />
+          <span>{fontSize}px</span>
         </div>
-        <button onClick={handleRunCode} className="toolbar-btn">Run Code</button>
-
-        {/* Language Selector */}
         <div className="language-selector">
           <label>Language:</label>
           <select value={language} onChange={handleLanguageChange}>
@@ -143,9 +158,13 @@ const CodeEditor = () => {
             <option value="java">Java</option>
           </select>
         </div>
+        <button onClick={handleRunCode} className="toolbar-btn run-btn">
+          Run Code
+        </button>
       </div>
 
-      <ResizeObserverWrapper>
+      {/* Monaco Editor */}
+      <ResizeObserverWrapper editorInstance={editorInstance}>
         <div className="editor-wrapper">
           <MonacoEditor
             width="100%"
@@ -161,19 +180,16 @@ const CodeEditor = () => {
               wordWrap: 'on',
               automaticLayout: true,
               renderLineHighlight: 'none',
-              minimap: { enabled: false }, 
+              minimap: { enabled: false },
               padding: { top: 10, bottom: 10, left: 2, right: 2 },
-              scrollbar: {
-                vertical: 'auto',
-                horizontal: 'auto',
-                useShadows: false,
-                alwaysConsumeMouseWheel: false,
-              },
+              scrollbar: { vertical: 'auto', horizontal: 'auto' },
             }}
+            editorDidMount={editorDidMount} // Set the editor instance
           />
         </div>
       </ResizeObserverWrapper>
 
+      {/* Output Container */}
       <div className="output-container">
         <h3>Output:</h3>
         <div>{output}</div>
