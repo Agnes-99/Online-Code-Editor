@@ -30,7 +30,7 @@ A simple and fun **online code editor** built with **React** and **Monaco Editor
 ---
 
 ## Screenshot
-![Screenshot](src/assets/screenshot1.png)
+![Screenshot](assets/screenshot1.png)
 
 ## 👀 Demo
 
