@@ -1,7 +1,7 @@
 
 .App {
   text-align: center;
-  padding: 20px;
+  padding: 50px;
   font-family: Arial, sans-serif;
   background-color: #ffffff;
   height: 100vh;
@@ -12,11 +12,12 @@
 
 .logo-container {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   flex-shrink: 0;
 }
 
 .logo {
+  margin-top: 10px;
   max-width: 250px;
   height: auto;
   transition: transform 0.3s ease-in-out;
@@ -27,10 +28,14 @@
 }
 
 .editor-container {
-  margin-top: 20px;
+  margin-top: 10px;
+  flex-grow: 1;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: calc(100%-100px);
   width: 100%;
+  max-width: 1200px;
+  height: 40%;
 }

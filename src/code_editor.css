@@ -1,17 +1,16 @@
-
 .code-editor-container {
   width: 100%;
   height: 90vh;
   display: flex;
   flex-direction: column;
-  background-color: #282c34;
-  border-radius: 12px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  padding: 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #1f1f1f, #2c2c2c);
+  border-radius: 16px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  padding: 24px;
+  font-family: 'Fira Code', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   transition: all 0.3s ease-in-out;
+  overflow: hidden;
 }
-
 
 .editor-toolbar {
   display: flex;
@@ -19,77 +18,131 @@
   align-items: center;
   margin-bottom: 20px;
   border-bottom: 2px solid #444;
-  padding-bottom: 10px;
+  padding-bottom: 12px;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
-
 .toolbar-btn {
-  padding: 10px 18px;
-  background-color: #4CAF50;
-  color: white;
+  padding: 10px 20px;
+  background: linear-gradient(145deg, #4caf50, #45a049);
+  color: #fff;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 16px;
-  font-weight: 500;
-  transition: background-color 0.3s, transform 0.2s;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.2);
 }
 
 .toolbar-btn:hover {
-  background-color: #45a049;
-  transform: scale(1.05);
+  transform: translateY(-2px) scale(1.04);
+  background: linear-gradient(145deg, #56c264, #3e9441);
 }
 
 .toolbar-btn:active {
-  transform: scale(0.98);
+  transform: scale(0.96);
+  box-shadow: none;
+}
+
+.toolbar-btn.run-btn {
+  background: linear-gradient(145deg, #2196f3, #1e88e5);
+}
+
+.toolbar-btn.run-btn:hover {
+  background: linear-gradient(145deg, #42a5f5, #1976d2);
+}
+
+.toolbar-btn.ai-btn {
+  background: linear-gradient(145deg, #9c27b0, #7b1fa2);
+}
+
+.toolbar-btn.ai-btn:hover {
+  background: linear-gradient(145deg, #ba68c8, #6a1b9a);
 }
 
 .font-size-selector {
   display: flex;
   align-items: center;
-}
-
-.font-size-selector label {
-  color: #ccc;
-  margin-right: 12px;
-  font-size: 14px;
+  color: #ddd;
+  gap: 10px;
 }
 
 .font-slider {
   width: 120px;
-  height: 5px;
-  cursor: pointer;
-  background-color: #444;
-  border-radius: 5px;
-  margin-top: 5px;
+  accent-color: #4caf50;
 }
 
-/* Wrapper around Monaco editor */
+.language-selector {
+  display: flex;
+  align-items: center;
+  background-color: #3a3a3a;
+  padding: 6px 12px;
+  border-radius: 10px;
+}
+
+.language-selector label {
+  color: #f0f0f0;
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.language-selector select {
+  background-color: #444;
+  color: #f1f1f1;
+  border: 1px solid #555;
+  border-radius: 6px;
+  padding: 8px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.language-selector select:hover,
+.language-selector select:focus {
+  background-color: #555;
+  border-color: #4caf50;
+  outline: none;
+}
+
 .editor-wrapper {
   flex-grow: 1;
-  position: relative;
-  border-radius: 12px;
-  background-color: #1e1e1e;
+  border-radius: 14px;
   overflow: hidden;
+  background-color: #1e1e1e;
+  box-shadow: inset 0 0 5px #111;
+  display: flex;
   margin-bottom: 20px;
+  height: 300px;
+  width: 100%;
 }
 
 .monaco-editor {
-  background-color: #1e1e1e !important;
-  color: #dcdcdc !important;
-  padding: 0 !important;
   font-size: 14px !important;
+  height: 100% !important;
+  width: 100% !important;
+  background-color: #1e1e1e !important;
+  color: #eee !important;
+  padding: 0 !important;
+  text-align: left !important;
+  display: block !important;
 }
 
 .monaco-editor .line-numbers {
   color: #888;
-  padding-right: 8px;
-  margin-left: 0px;
 }
 
 .monaco-editor .view-line {
-  padding-left: 4px;
-  display: flex;
+  padding-left: 0px !important;
+}
+
+.monaco-editor .view-lines {
+  text-align: left !important;
+}
+
+.monaco-editor .margin {
+  padding-left: 0 !important;
 }
 
 .monaco-editor ::-webkit-scrollbar {
@@ -97,52 +150,50 @@
 }
 
 .monaco-editor ::-webkit-scrollbar-thumb {
-  background-color: #555;
-  border-radius: 12px;
+  background-color: #666;
+  border-radius: 10px;
 }
 
 .monaco-editor ::-webkit-scrollbar-thumb:hover {
-  background-color: #777;
+  background-color: #888;
 }
 
 .monaco-editor ::-webkit-scrollbar-track {
-  background-color: #333;
+  background-color: #2c2c2c;
 }
 
-
 .output-container {
-  background-color: #2d2d2d;
+  background: linear-gradient(145deg, #292929, #1e1e1e);
   color: #dcdcdc;
-  padding: 20px;
-  border-radius: 12px;
+  padding: 24px;
+  border-radius: 14px;
   margin-top: 20px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
   max-height: 40vh;
   overflow-y: auto;
+  transition: all 0.3s ease;
 }
 
 .output-container h3 {
   font-size: 20px;
-  color: #4CAF50;
-  margin-bottom: 15px;
+  color: #4caf50;
+  margin-bottom: 16px;
   font-weight: 600;
 }
 
-
 .output-container pre {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 16px;
+  font-family: 'Fira Code', 'Courier New', Courier, monospace;
+  font-size: 15px;
   white-space: pre-wrap;
   word-wrap: break-word;
   background-color: #1e1e1e;
-  padding: 20px;
+  padding: 18px;
   border-radius: 8px;
   border: 1px solid #444;
   margin: 0;
-  color: #dcdcdc;
   line-height: 1.5;
+  color: #eee;
 }
-
 
 .output-container pre.error {
   background-color: #b92f2f;
@@ -151,51 +202,13 @@
 }
 
 .output-container pre.success {
-  background-color: #4CAF50;
+  background-color: #2e7d32;
   color: #fff;
-  border: 1px solid #388e3c;
+  border: 1px solid #1b5e20;
 }
 
-
-.language-selector {
-  display: flex;
-  align-items: center;
-  background-color: #333;
-  padding: 6px 10px;
-  border-radius: 8px;
-}
-
-.language-selector label {
-  color: white;
-  margin-right: 10px;
-  font-size: 14px;
-}
-
-.language-selector select {
-  background-color: #444;
-  color: #dcdcdc;
-  border: 1px solid #555;
-  border-radius: 6px;
-  padding: 8px 15px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-}
-
-.language-selector select:hover {
-  background-color: #555;
-}
-
-.language-selector select:focus {
-  border-color: #4CAF50;
-  outline: none;
-}
-
-.language-selector select option {
-  background-color: #333;
-  color: #dcdcdc;
-}
-
-.language-selector select option:hover {
-  background-color: #555;
+.output-container pre.info {
+  background-color: #1d3557;
+  color: #a8dadc;
+  border: 1px solid #457b9d;
 }
