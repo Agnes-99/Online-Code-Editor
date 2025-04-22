@@ -1,7 +1,7 @@
 
 # 🖥️ Online Code Editor
 ---
-UNDER DEVELOPMENT
+UNDER DEVELOPMENT- SCREENSHORTS PROVIDED
 
 A simple and fun **online code editor** built with **React** and **Monaco Editor**. Write and run JavaScript code directly in your browser. 🎉 Perfect for learning, experimenting and testing out your code in real-time.
 
@@ -16,18 +16,21 @@ A simple and fun **online code editor** built with **React** and **Monaco Editor
 - **⚠️ Error Handling**: Errors are caught and displayed to help you fix issues easily.
 - **📜 Console Output**: View logs and results in a neat output area below the editor.
 - **📱 Responsive**: The editor looks great on all screen sizes.
+- **📚 Multi-language Support**: Expand the editor to support languages other than JavaScript (e.g. Python, Java, JavaScript).
 
 ## 🔮 Features to Come
 
 - **🔍 Autocompletion**: Add more advanced IntelliSense to suggest functions, variables and methods as you type.
 - **💾 Save & Load Code**: Allow users to save their code to local storage or a cloud service and load it later.
-- **📚 Multi-language Support**: Expand the editor to support languages other than JavaScript (e.g. Python, Java, HTML).
 - **🎨 Custom Themes**: Let users create their own themes or select from a library of themes.
 - **🖨️ Print Output**: Add a feature to print the output of the code directly to a PDF or printer.
 - **⚡ Live Collaboration**: Allow users to collaborate on code in real-time, like Google Docs for code.
 - **💬 Code Snippets**: Enable a library of common code snippets for users to easily insert into their code.
 
 ---
+
+## Screenshot
+![Screenshot](src/assets/screenshot1.png)
 
 ## 👀 Demo
 
