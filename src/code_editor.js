@@ -125,7 +125,7 @@ const CodeEditor = () => {
           const result = event.data;
           setOutput(result.startsWith('Error:')
             ? <pre className="error">🚨 {result}</pre>
-            : <pre className="success">✅ {result}</pre>
+            : <pre className="success"> {result}</pre>
           );
           window.removeEventListener('message', messageHandler);
         }
